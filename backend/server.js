@@ -10,6 +10,7 @@ const session=require("express-session");
 const mongoose=require("mongoose");
 const Post=require("./models/post.js");
 const User=require("./models/user.js");
+const bodyParser = require('body-parser');
 
 
 const db_url="mongodb://127.0.0.1:27017/Flexlink"
@@ -40,7 +41,8 @@ const sessionOptions={
         httpOnly:true
     }
 }
-app.use(session(sessionOptions))
+app.use(session(sessionOptions));
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 app.use(passport.session());
